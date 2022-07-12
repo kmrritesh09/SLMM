@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLMM", "SLMM\SLMM.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLMMTests", "SLMMTests\SLMMTests.csproj", "{71A6CA7E-79C7-4B1D-AB55-4DB62970B229}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FBFA9D47-6AA9-4433-826A-29158D16752B}"
+	ProjectSection(SolutionItems) = preProject
+		DirectionToRunApplication.txt = DirectionToRunApplication.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

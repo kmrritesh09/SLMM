@@ -3,8 +3,8 @@
 namespace SLMM.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class SLMMController
+    [Route("[controller]/[action]")]
+    public class SLMMController : Controller
     {
         public readonly IConfiguration Configuration;
         public static int Length = 10;
@@ -60,7 +60,7 @@ namespace SLMM.Controllers
                     Thread.Sleep(SLMMConstants.ForwardMovementWaitTimeInMs);
                     break;
                 default:
-                    throw new Exception("Error in Instruction");
+                    throw new Exception(SLMMConstants.InvalidInstructionError);
             }
 
             LawnMowerPosition lawnMowerPosition = new LawnMowerPosition()

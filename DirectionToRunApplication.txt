@@ -1,0 +1,55 @@
+--- About the API
+
+1) This solution is built on .Net core web API version 6.0.0200
+
+2) Unit test project is built on the same version
+
+3) This application adheres to the assignment on the link https://github.com/ParcelVision/SLMM/blob/master/server-side-dev-test.md
+
+4) The aim of the API is make a lawn mower move in a rectangular field with assumption that there is only one lawn mower in the field
+
+--- How to load the application
+
+1) Download or clone the application
+2) Check you have visual studio installed on your machine
+2) Make sure to open the application in visual studio 2022 as lower versions do not support .Net core 6.0.
+3) If you do not have enterprise or professional version of visual studio 2022, feel free to download the community version. This is 
+a very simple project which which run nicely even in community edition
+
+-- How to Run the application
+
+1) Once the application is opened in visual studio, Rebuild the project using the build menu option in top menu bar.
+2) Select SLMM and not SLMMTests as the start up application
+3) Run the application from the second menu bar
+4) The swagger is incorporated to make the API calls designed
+5) The swagger page should open automatically but if there is a firewall issue, go to the below url in the browser selected while 
+running the app :- https://localhost:7029/swagger/index.html
+
+-- Assumption while running the api calls
+1) For the reset api "SetAreaOfFieldAndResetSLMM", It will set the dimension of the fiels to length and breadth provided.
+2) It will also place the lown mower to (0,0) position facing northward as expected. 
+3) This means when the application starts or is reset the lown mower x and y axis position is 0 and it is facing northward
+4) For the SLMM movement api "MoveLawnMower", we expect the input in the form of integer. This integer is translated into the commands as below :- 
+
+0 :- Rotate clockwise
+1 :- Rotate Anti-clockwise
+2 :- Move forward
+
+5) For any other integer other than 1,2,3 the api throws a proper exception message asking to enter either 1,2 or 3 and their corresponsing meaning
+6) The instruction input is designed with the expectation that when the front-end for the api is designed, it will take the input selection
+from use and change it to corresponding integer from instruction enum in the front-end which adheres to the enum in backend.
+7) If at any position, the SLMM goes is to go out of the lawn due to further forward movement, the api thrown an exception signifying 
+the direction in which the SLMM was moving and further movement is not possible.
+
+
+--- How to run unit tests
+
+1) Code coverage has been ensured to cover all scenarios. To run the unit tests, in the top menu bar select Test -> Run All Tests
+2) Alternativelt you can go to Test -> Test Explorer and dock it on the window and the either run all tests or run one of them
+
+
+--- Further work that could be done
+
+1) Get exception in proper format like problem details json specification instead of just throw an exception
+2) Develop a simple UI which takes instruction in a proper format from user and calls API with integer values
+3) Instead of Thread.Sleep, use some implementation of async/await
