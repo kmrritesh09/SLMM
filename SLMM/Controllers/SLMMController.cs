@@ -45,19 +45,19 @@ namespace SLMM.Controllers
             {
                 case (int)Instructions.Turn90clockwise:
                     SetNewDirectionAfterClockwise();
-                    Thread.Sleep(2000);
+                    Thread.Sleep(SLMMConstants.DirectionMovementWaitTimeInMs);
                     break;
                 case (int)Instructions.Turn90anticlockwise:
                     SetNewDirectionAfterAntiClockwise();
-                    Thread.Sleep(2000);
+                    Thread.Sleep(SLMMConstants.DirectionMovementWaitTimeInMs);
                     break;
                 case (int)Instructions.Moveonestepforward:
-                    if(!CheckIfForwardMovementPossible())
+                    if(!CheckIfForwardMovementPossible(out string errorMessage))
                     {
-                        throw new Exception("Invalid command for current position of SLMM");
+                        throw new Exception(errorMessage);
                     }
                     MoveSLMMBySingleStep();
-                    Thread.Sleep(5000);
+                    Thread.Sleep(SLMMConstants.ForwardMovementWaitTimeInMs);
                     break;
                 default:
                     throw new Exception("Error in Instruction");
@@ -73,27 +73,40 @@ namespace SLMM.Controllers
             return lawnMowerPosition;
         }
 
-        private bool CheckIfForwardMovementPossible()
+        private bool CheckIfForwardMovementPossible(out string errorMessage)
         {
             bool commandPossible = true;
+            errorMessage = string.Empty;
 
             switch (currentDirection)
             {
                 case Compass.East:
                     if (xAxisPosition == Length)
+                    {
+                        errorMessage = SLMMConstants.EastMovementExceptionMessage;
                         commandPossible = false;
+                    }
                     break;
                 case Compass.West:
                     if (xAxisPosition == 0)
+                    {
                         commandPossible = false;
+                        errorMessage = SLMMConstants.WestMovementExceptionMessage;
+                    }
                     break;
                 case Compass.North:
                     if (yAxisPosition == Breadth)
+                    {
                         commandPossible = false;
+                        errorMessage = SLMMConstants.NorthMovementExceptionMessage;
+                    }
                     break;
                 case Compass.South:
                     if (yAxisPosition == 0)
+                    {
                         commandPossible = false;
+                        errorMessage = SLMMConstants.SouthMovementExceptionMessage;
+                    }
                     break;
                 default:
                     break;

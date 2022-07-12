@@ -48,7 +48,7 @@ namespace SLMMTests
             catch(Exception ex)
             {
                 //Assert
-                Assert.AreEqual(ex.Message, "Invalid command for current position of SLMM");
+                Assert.AreEqual(ex.Message, SLMMConstants.NorthMovementExceptionMessage);
             }
         }
 
@@ -73,7 +73,7 @@ namespace SLMMTests
             catch (Exception ex)
             {
                 //Assert
-                Assert.AreEqual(ex.Message, "Invalid command for current position of SLMM");
+                Assert.AreEqual(ex.Message, SLMMConstants.EastMovementExceptionMessage);
             }
         }
 
@@ -110,7 +110,7 @@ namespace SLMMTests
             catch (Exception ex)
             {
                 //Assert
-                Assert.AreEqual(ex.Message, "Invalid command for current position of SLMM");
+                Assert.AreEqual(ex.Message, SLMMConstants.WestMovementExceptionMessage);
             }
         }
 
@@ -171,7 +171,7 @@ namespace SLMMTests
             catch (Exception ex)
             {
                 //Assert
-                Assert.AreEqual(ex.Message, "Invalid command for current position of SLMM");
+                Assert.AreEqual(ex.Message, SLMMConstants.SouthMovementExceptionMessage);
             }
         }
     }
